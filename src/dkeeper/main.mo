@@ -31,7 +31,15 @@ actor DKeeper {
     return List.toArray(notes);
   };
 
-  public func deleteNote(){
 
-  };
+  public func removeNote(index: Nat){
+        // taking the notes from the one we want to drop till the last one
+        var headNotes: List.List<Note> =  List.drop(notes, index);
+        //taking the notes before the one we want to drop
+        var backNotes: List.List<Note> = List.take(notes, index);
+        // delete note 
+        headNotes := List.drop(headNotes, 1);
+        // merge head and back list together
+        notes:=List.append(backNotes,headNotes);
+    };
 };
